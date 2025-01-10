@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- ICON -->
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Tema Gelap Bootstrap -->
+  <link href="https://bootswatch.com/4/cyborg/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #eaeaea;
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar-dark .navbar-brand,.navbar-dark .navbar-nav .nav-link {
+      color: #eaeaea;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .navbar.navbar-expand-lg.navbar-dark.bg-dark {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .container-mt-4 h1 {
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .container-mt-4 p {
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    .form-container {
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-primary {
+      background-color: #00c6ff;
+      border: none;
+      border-radius: 25px;
+      color: #fff;
+      padding: 10px 20px;
+      transition: background 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #00a3d9;
+    }
+
+    .fade-in {
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .tim-kami {
+      padding: 50px 20px;
+      text-align: center;
+      color: #eaeaea;
+    }
+
+    .tim-kami h2 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      color: #00c6ff;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .team-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .team-member {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 15px;
+      padding: 20px;
+      width: 220px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      backdrop-filter: blur(15px);
+    }
+
+    .team-member:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 25px rgba(0, 255, 255, 0.8);
+    }
+
+    .team-member img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      border: 2px solid #00c6ff;
+    }
+
+    .team-member h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .social-icon {
+      margin: 0 8px;
+      font-size: 1.5rem;
+      color: #eaeaea;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+      text-decoration: none;
+    }
+
+    .social-icon.instagram:hover {
+      color: #ff0000;
+      text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+      text-decoration: none;
+    }
+
+    .social-icon.email:hover {
+      color: #FFAA00;
+      text-shadow: 0 0 5px #FFAA00, 0 0 10px #FFAA00;
+      text-decoration: none;
+    }
+
+    .social-icon.linkedin:hover {
+        color: #00a3d9;
+        text-shadow: 0 0 5px #00a3d9, 0 0 10px #00a3d9;
+        text-decoration: none;
+    }
+
+    .footer {
+      background-color: #111;
+      color: #aaa;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .footer-bottom {
+      margin-top: 20px;
+      border-top: 1px solid #333;
+      padding-top: 20px;
+      font-size: 0.8em;
+    }
+    #result-container img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+}
+
+  </style>
+
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Steganografi</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+
+  <div class="container-mt-4">
+    <h1 class="fade-in">Selamat Datang di Aplikasi Steganografi</h1>
+    <p class="fade-in">Pilih salah satu fitur di bawah ini:</p>
+
+    <!-- Form Encode -->
+    <div class="form-container fade-in">
+      <form action="/encode" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="image">Unggah Gambar:</label>
+          <input type="file" class="form-control-file" name="image" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Pesan:</label>
+          <textarea class="form-control" name="message" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="shift">Pergeseran Cesar Cipher:</label>
+          <input type="number" class="form-control" name="shift" value="3" />
+        </div>
+        <button type="submit" class="btn btn-primary">Sisipkan Pesan</button>
+      </form>
+      <div id="result-container" class="mt-4 fade-in"></div>
+    </div>
+
+    <!-- Form Decode -->
+    <div class="form-container mt-5 fade-in">
+      <form action="/decode" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="image">Unggah Gambar yang Mengandung Pesan:</label>
+          <input type="file" class="form-control-file" name="image" required />
+        </div>
+        <div class="form-group">
+          <label for="shift">Pergeseran Cesar Cipher:</label>
+          <input type="number" class="form-control" name="shift" value="3" />
+        </div>
+        <button type="submit" class="btn btn-primary">Dekode Pesan</button>
+      </form>
+    </div>
+
+    <!-- Hasil Decode -->
+    <div id="decode-result-container" class="mt-4 fade-in"></div>
+
+    <!-- Form PSNR dan MSE -->
+    <div class="form-container mt-5 fade-in">
+      <form action="/calculate" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="original_image">Unggah Gambar Asli:</label>
+          <input type="file" class="form-control-file" name="original_image" required />
+        </div>
+        <div class="form-group">
+          <label for="stego_image">Unggah Gambar yang Disisipkan Pesan:</label>
+          <input type="file" class="form-control-file" name="stego_image" required />
+        </div>
+        <button type="submit" class="btn btn-primary">
+          Hitung PSNR & MSE
+        </button>
+      </form>
+      <!-- Hasil PSNR dan MSE -->
+    <div id="psnr-mse-result-container" class="mt-4 fade-in"></div>
+    </div>
+
+    
+
+    <section class="tim-kami" id="tim-kami">
+      <h2>Tim Kami</h2>
+      <div class="team-row">
+        <div class="team-member">
+          <img src="{{ url_for('static', filename='img/julio.jpg') }}" alt="Julio">
+          <h3>Julio</h3>
+          <a href="https://www.linkedin.com/in/julio-caesar-ray-bakar-gani/" class="social-icon linkedin"><i
+              class='bx bxl-linkedin'></i>
+          </a>
+          <a href="https://instagram.com/panjul.hitori" target="_blank" class="social-icon instagram"><i
+              class='bx bxl-instagram'></i>
+          </a>
+          <a href="mailto:juliocaesarrbg@upi.edu" class="social-icon email"><i class='bx bx-envelope'></i>
+          </a>
+        </div>
+
+        <div class="team-member">
+          <img src="{{ url_for('static', filename='img/prihatma.jpg') }}" alt="Prihatma">
+          <h3>Prihatma</h3>
+          <a href="https://www.linkedin.com/in/prihatma-nurwahid-31b0292b3/" class="social-icon linkedin"><i
+              class='bx bxl-linkedin'></i>
+          </a>
+          <a href="https://instagram.com/ku_priths" class="social-icon instagram"><i class='bx bxl-instagram'></i>
+          </a>
+          <a href="mailto:prihatma21@upi.edu" class="social-icon email"><i class='bx bx-envelope'></i>
+          </a>
+        </div>
+
+        <div class="team-member">
+          <img src="{{ url_for('static', filename='img/Destya.jpg') }}" alt="Destya">
+          <h3>Destya</h3>
+          <a href="https://www.linkedin.com/in/destya-aulia-n-h-9246a331a/" class="social-icon linkedin"><i
+              class='bx bxl-linkedin'></i>
+          </a>
+          <a href="https://instagram.com/aulianrlhtm" class="social-icon instagram"><i class='bx bxl-instagram'></i>
+          </a>
+          <a href="mailto:destyaanh@upi.edu" class="social-icon email"><i class='bx bx-envelope'></i>
+          </a>
+        </div>
+
+        <div class="team-member">
+          <img src="{{ url_for('static', filename='img/firda.jpeg') }}" alt="Firda">
+          <h3>Firda</h3>
+          <a href="https://www.linkedin.com/in/firdaroses/" class="social-icon linkedin"><i class='bx bxl-linkedin'></i>
+          </a>
+          <a href="https://instagram.com/freshhlock" class="social-icon instagram"><i class='bx bxl-instagram'></i>
+          </a>
+          <a href="mailto:firdaroses@upi.edu" class="social-icon email"><i class='bx bx-envelope'></i>
+          </a>
+        </div>
+
+        <div class="team-member">
+          <img src="{{ url_for('static', filename='img/sisca.jpg') }}" alt="Sisca">
+          <h3>Sisca</h3>
+          <a href="https://www.linkedin.com/in/siscafp/" class="social-icon linkedin"><i class='bx bxl-linkedin'></i>
+          </a>
+          <a href="https://instagram.com/siscafp__" class="social-icon instagram"><i class='bx bxl-instagram'></i>
+          </a>
+          <a href="mailto:siscafebrianp@upi.edu" class="social-icon email"><i class='bx bx-envelope'></i>
+          </a>
+        </div>
+      </div>
+    </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-bottom">
+        <p>&copy; 2024 Kelompok 1 Pemrograman Aplikasi Bergerak. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+
+
+    <!-- JavaScript untuk menangani form submit -->
+    <script>
+      
+      document
+      .querySelector("form")
+      .addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        let formData = new FormData(this);
+        let response = await fetch("/encode", {
+          method: "POST",
+          body: formData,
+        });
+        let result = await response.json();
+
+        let resultContainer = document.getElementById("result-container");
+        if (result.image_path) {
+          resultContainer.innerHTML = `
+            <p>${result.message}</p>
+            <p><strong>Encrypted Message:</strong> ${result.encrypted_message}</p>
+            <p><strong>SGL Message:</strong> ${result.sgl_message}</p>
+            <img src="${result.image_path}" alt="Hidden Image">
+          `;
+        } else {
+          resultContainer.innerHTML = `<p>${result.message}</p>`;
+        }
+      });
+
+      document.querySelector("form[action='/encode']").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  document.querySelector('textarea[name="message"]').style.display = 'none';
+  document.querySelector('input[name="shift"]').style.display = 'none';
+
+  document.querySelector('input[name="image"]').disabled = true;
+  const submitButton = document.querySelector('button[type="submit"]');
+  submitButton.disabled = true;
+
+  let formData = new FormData(this);
+  fetch("/encode", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      let resultContainer = document.getElementById("result-container");
+      if (result.image_path) {
+        resultContainer.innerHTML = `
+          <p>${result.message}</p>
+          <p><strong>Encrypted Message:</strong> ${result.encrypted_message}</p>
+          <p><strong>SGL Message:</strong> ${result.sgl_message}</p>
+          <img src="${result.image_path}" alt="Hidden Image">
+        `;
+      } else {
+        resultContainer.innerHTML = `<p>${result.message}</p>`;
+      }
+    });
+});
+
+    
+      document
+        .querySelector('form[action="/decode"]')
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+    
+          let formData = new FormData(this);
+          let response = await fetch("/decode", {
+            method: "POST",
+            body: formData,
+          });
+          let result = await response.json();
+    
+          let resultContainer = document.getElementById("decode-result-container");
+          if (result.decoded_message) {
+            resultContainer.innerHTML = `<p>Pesan Tersembunyi: ${result.decoded_message}</p>`;
+          } else {
+            resultContainer.innerHTML = `<p>${result.message}</p>`;
+          }
+        });
+    
+        document.querySelector('form[action="/calculate"]').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+
+      fetch('/calculate', {
+        method: 'POST',
+        body: formData
+      })
+        .then(response => response.json())
+        .then(data => {
+          const resultContainer = document.getElementById('psnr-mse-result-container');
+          if (data.psnr && data.mse) {
+            resultContainer.innerHTML = `
+              <h5>PSNR: ${data.psnr}</h5>
+              <h5>MSE: ${data.mse}</h5>
+            `;
+          }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+    </script>
+    
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
